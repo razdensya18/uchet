@@ -1,5 +1,5 @@
 // Офлайн-кэш учёта. Версия меняется при каждой сборке — iPad подхватывает новую страницу сам.
-const CACHE = 'uchet-5dd5e78054';
+const CACHE = 'uchet-3bd10de710';
 const ASSETS = ['./', './index.html', './manifest.webmanifest', './icon-180.png', './icon-192.png', './icon-512.png'];
 
 self.addEventListener('install', e => {
@@ -28,7 +28,7 @@ self.addEventListener('fetch', e => {
     );
     return;
   }
-  const own = url.origin === location.origin;
+  const own = url.href.startsWith(self.registration.scope);
   const fonts = url.hostname === 'fonts.googleapis.com' || url.hostname === 'fonts.gstatic.com';
   if (!own && !fonts) return;
   e.respondWith(
